@@ -12,7 +12,7 @@ module half_adder_tb;
         for (i = 0; i < 4; i = i + 1) begin
             {a, b} = i[1:0];
             expected = {1'b0, a} + {1'b0, b};
-            #1; // Aguarda a propagação antes de conferir a saída.
+            #1; // Espera 1 ns antes de comparar.
             if ({carry, sum} !== expected)
                 $fatal(1, "HA: a=%b b=%b resultado=%b%b esperado=%b", a, b, carry, sum, expected);
         end

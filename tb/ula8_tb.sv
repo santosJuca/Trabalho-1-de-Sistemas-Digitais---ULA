@@ -27,7 +27,7 @@ module ula8_tb;
                         3'b111: expected = i ^ j;
                         default: expected = 16'd0;
                     endcase
-                    #1; // Aguarda a propagação antes de conferir a saída.
+                    #1; // Espera 1 ns antes de comparar.
                     if (result !== expected)
                         $fatal(1, "ULA: op=%b a=%h b=%h resultado=%h esperado=%h",
                                op, a, b, result, expected);
@@ -35,22 +35,22 @@ module ula8_tb;
             end
         end
 
-        // Faz A retornar a zero para exercitar também as transições de descida.
+        // Volta as entradas para zero.
         a = 0;
         b = 0;
         op = 3'b000;
         #1;
         if (result !== 16'h0000)
-            $fatal(1, "ULA: soma de zero deve retornar zero");
+            $fatal(1, "ULA: 0 + 0 deu %h, esperado 0000", result);
 
         op = 3'bxxx;
         #1;
         if (result !== 16'h0000)
-            $fatal(1, "ULA: seletor desconhecido deve retornar zero");
+            $fatal(1, "ULA: op=xxx deu %h, esperado 0000", result);
         op = 3'bzzz;
         #1;
         if (result !== 16'h0000)
-            $fatal(1, "ULA: seletor em alta impedância deve retornar zero");
+            $fatal(1, "ULA: op=zzz deu %h, esperado 0000", result);
 
         $display("ula8_tb: 524288 combinações, retorno a zero e 2 seletores inválidos passaram");
         $finish;

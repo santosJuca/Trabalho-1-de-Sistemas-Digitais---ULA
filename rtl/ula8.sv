@@ -28,7 +28,7 @@ module ula8 (
     always_comb begin
         case (op)
             SUM: result = {7'b0, carry_out, sum};
-            // Sem carry na subtração, houve empréstimo: estende o resultado negativo.
+            // Se houve empréstimo, completa os bits superiores com 1.
             SUB: result = {{8{~carry_out}}, sum};
             MUL: result = product;
             COM: result = {15'b0, (a == b)};

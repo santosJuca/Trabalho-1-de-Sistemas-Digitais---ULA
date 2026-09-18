@@ -1,4 +1,4 @@
-// Multiplica dois operandos de 8 bits com HA/FA, preservando o produto completo.
+// Soma os produtos parciais usando HA e FA.
 module multiplier8 (
     input  logic [7:0] a,
     input  logic [7:0] b,

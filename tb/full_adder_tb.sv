@@ -21,7 +21,7 @@ module full_adder_tb;
     initial begin
         for (i = 0; i < 8; i = i + 1) begin
             {a, b, cin} = i[2:0];
-            #1; // Aguarda a propagação antes de conferir a saída.
+            #1; // Espera 1 ns antes de comparar.
             expected = a + b + cin;
 
             if ({cout, sum} !== expected)
